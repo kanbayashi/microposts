@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before action :set_users, only: [:edit, :update]
+  before_action :set_users, only: [:edit, :update]
   def show # 追加
    @user = User.find(params[:id])
   end
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update (user_params)
+    if @user.update(user_params)
       #保存に成功した場合は、トップページへリダイレクト
       redirect_to root_path , notice: 'プロフィールを変更しました'
     else
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password,
+    params.require(:user).permit(:name, :email, :password, :area, :profile,
                                  :password_confirmation)
   end
   
